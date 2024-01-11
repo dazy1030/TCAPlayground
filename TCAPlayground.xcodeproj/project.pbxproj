@@ -17,6 +17,10 @@
 		E98507182B4FB904005C83DF /* ListSectionsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98507132B4FB904005C83DF /* ListSectionsTemplate.swift */; };
 		E98507192B4FB904005C83DF /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98507142B4FB904005C83DF /* ListSection.swift */; };
 		E985071B2B4FB965005C83DF /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985071A2B4FB965005C83DF /* Root.swift */; };
+		E985071E2B4FBB13005C83DF /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = E985071D2B4FBB13005C83DF /* Nuke */; };
+		E98507202B4FBB13005C83DF /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = E985071F2B4FBB13005C83DF /* NukeExtensions */; };
+		E98507222B4FBB13005C83DF /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = E98507212B4FBB13005C83DF /* NukeUI */; };
+		E98507242B4FBB13005C83DF /* NukeVideo in Frameworks */ = {isa = PBXBuildFile; productRef = E98507232B4FBB13005C83DF /* NukeVideo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E985070C2B4FB851005C83DF /* ComposableArchitecture in Frameworks */,
+				E985071E2B4FBB13005C83DF /* Nuke in Frameworks */,
+				E98507242B4FBB13005C83DF /* NukeVideo in Frameworks */,
+				E98507202B4FBB13005C83DF /* NukeExtensions in Frameworks */,
+				E98507222B4FBB13005C83DF /* NukeUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +118,10 @@
 			name = TCAPlayground;
 			packageProductDependencies = (
 				E985070B2B4FB851005C83DF /* ComposableArchitecture */,
+				E985071D2B4FBB13005C83DF /* Nuke */,
+				E985071F2B4FBB13005C83DF /* NukeExtensions */,
+				E98507212B4FBB13005C83DF /* NukeUI */,
+				E98507232B4FBB13005C83DF /* NukeVideo */,
 			);
 			productName = TCAPlayground;
 			productReference = E98506F92B4FB7DD005C83DF /* TCAPlayground.app */;
@@ -141,6 +153,7 @@
 			mainGroup = E98506F02B4FB7DD005C83DF;
 			packageReferences = (
 				E985070A2B4FB851005C83DF /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				E985071C2B4FBB13005C83DF /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = E98506FA2B4FB7DD005C83DF /* Products */;
 			projectDirPath = "";
@@ -390,6 +403,14 @@
 				version = 1.6.0;
 			};
 		};
+		E985071C2B4FBB13005C83DF /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:kean/Nuke.git";
+			requirement = {
+				kind = exactVersion;
+				version = 12.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -397,6 +418,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E985070A2B4FB851005C83DF /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		E985071D2B4FBB13005C83DF /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E985071C2B4FBB13005C83DF /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		E985071F2B4FBB13005C83DF /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E985071C2B4FBB13005C83DF /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+		E98507212B4FBB13005C83DF /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E985071C2B4FBB13005C83DF /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
+		E98507232B4FBB13005C83DF /* NukeVideo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E985071C2B4FBB13005C83DF /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeVideo;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

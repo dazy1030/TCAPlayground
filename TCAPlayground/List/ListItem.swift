@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import NukeUI
 import SwiftUI
 
 @Reducer
@@ -36,17 +37,17 @@ struct ListItem: View {
         HStack(spacing: 0) {
             Text(viewStore.title)
             Spacer()
-            AsyncImage(url: viewStore.imageURL) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 100, height: 100)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-            } placeholder: {
-                Color.gray
-                    .frame(width: 100, height: 100)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            LazyImage(url: viewStore.imageURL) { state in
+                if let image = state.image {
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Color.gray
+                }
             }
+            .frame(width: 100, height: 100)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
         }
         .padding()
     }
