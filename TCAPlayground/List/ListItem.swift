@@ -11,6 +11,7 @@ import SwiftUI
 
 @Reducer
 struct ListItemReducer {
+    @ObservableState
     struct State: Equatable, Identifiable {
         let id: UUID
         var title: String
@@ -26,18 +27,12 @@ struct ListItemReducer {
 
 struct ListItem: View {
     let store: StoreOf<ListItemReducer>
-    @ObservedObject var viewStore: ViewStoreOf<ListItemReducer>
-    
-    init(store: StoreOf<ListItemReducer>) {
-        self.store = store
-        self.viewStore = .init(store, observe: { $0 })
-    }
     
     var body: some View {
         HStack(spacing: 0) {
-            Text(viewStore.title)
+            Text(store.title)
             Spacer()
-            LazyImage(url: viewStore.imageURL) { state in
+            LazyImage(url: store.imageURL) { state in
                 if let image = state.image {
                     image
                         .resizable()

@@ -10,6 +10,7 @@ import SwiftUI
 
 @Reducer
 struct ListSectionReducer {
+    @ObservableState
     struct State: Equatable, Identifiable {
         let id: UUID
         var title: String
@@ -30,20 +31,14 @@ struct ListSectionReducer {
 
 struct ListSection: View {
     let store: StoreOf<ListSectionReducer>
-    @ObservedObject var viewStore: ViewStoreOf<ListSectionReducer>
-    
-    init(store: StoreOf<ListSectionReducer>) {
-        self.store = store
-        self.viewStore = .init(store, observe: { $0 })
-    }
     
     var body: some View {
-        Text(viewStore.title)
+        Text(store.title)
             .font(.headline)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             .background(Color.gray.opacity(0.6))
-        ForEachStore(store.scope(state: \.items, action: \.items)) { store in
+        ForEach(store.scope(state: \.items, action: \.items)) { store in
             ListItem(store: store)
         }
     }

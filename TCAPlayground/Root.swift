@@ -10,8 +10,9 @@ import SwiftUI
 
 @Reducer
 struct RootReducer {
+    @ObservableState
     struct State: Equatable {
-        @PresentationState var sectionedList: SectionedListReducer.State?
+        @Presents var sectionedList: SectionedListReducer.State?
     }
     
     enum Action {
@@ -36,24 +37,23 @@ struct RootReducer {
 }
 
 struct Root: View {
-    let store: StoreOf<RootReducer>
-    @ObservedObject var viewStore: ViewStoreOf<RootReducer>
-    
-    init(store: StoreOf<RootReducer>) {
-        self.store = store
-        self.viewStore = .init(store, observe: { $0 })
-    }
+    @Bindable var store: StoreOf<RootReducer>
     
     var body: some View {
         NavigationStack {
             List {
                 Button("Sectioned List") {
-                    viewStore.send(.sectionedListSelected)
+                    store.send(.sectionedListSelected)
                 }
             }
             .navigationTitle("TCA example")
-            .navigationDestination(store: store.scope(state: \.$sectionedList, action: \.sectionedList)) { store in
-                SectionedList(store: store)
+            .navigationDestination(
+                item: $store.scope(
+                    state: \.sectionedList,
+                    action: \.sectionedList
+                )
+            ) { childStore in
+                SectionedList(store: childStore)
             }
         }
     }

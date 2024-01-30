@@ -10,6 +10,7 @@ import SwiftUI
 
 @Reducer
 struct SectionedListReducer {
+    @ObservableState
     struct State: Equatable {
         var sections: IdentifiedArrayOf<ListSectionReducer.State>
     }
@@ -28,16 +29,10 @@ struct SectionedListReducer {
 
 struct SectionedList: View {
     let store: StoreOf<SectionedListReducer>
-    @ObservedObject var viewStore: ViewStoreOf<SectionedListReducer>
-    
-    init(store: StoreOf<SectionedListReducer>) {
-        self.store = store
-        self.viewStore = .init(store, observe: { $0 })
-    }
     
     var body: some View {
         List {
-            ForEachStore(store.scope(state: \.sections, action: \.sections)) { store in
+            ForEach(store.scope(state: \.sections, action: \.sections)) { store in
                 ListSection(store: store)
                     .listRowInsets(.init())
                     .listRowSeparator(.hidden)
